@@ -28,12 +28,34 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 450);
-			this.Text = "Form1";
+			grdCategories = new DataGridView();
+			((System.ComponentModel.ISupportInitialize)grdCategories).BeginInit();
+			SuspendLayout();
+			// 
+			// grdCategories
+			// 
+			grdCategories.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			grdCategories.Location = new Point(3, 86);
+			grdCategories.Name = "grdCategories";
+			grdCategories.RowTemplate.Height = 25;
+			grdCategories.Size = new Size(396, 333);
+			grdCategories.TabIndex = 0;
+			// 
+			// Form1
+			// 
+			AutoScaleDimensions = new SizeF(7F, 15F);
+			AutoScaleMode = AutoScaleMode.Font;
+			ClientSize = new Size(800, 450);
+			Controls.Add(grdCategories);
+			Name = "Form1";
+			Text = "Form1";
+			Load += Form1_Load;
+			((System.ComponentModel.ISupportInitialize)grdCategories).EndInit();
+			ResumeLayout(false);
 		}
 
 		#endregion
+
+		private DataGridView grdCategories;
 	}
 }
