@@ -1,0 +1,18 @@
+﻿context.Products.AsNoTracking().ToList();
+Eğer çektiğim obje üzerinde herhangi bir operasyon yütümeyeceksem örn sadece ekranda göstereceksem,
+raporda kullanacaksam AsNoTracking() demem uygun olur.
+
+
+var categories = (from c in context.Categories.AsNoTracking().AsSplitQuery().Include(c => c.Products)
+							  select new CategoryGridVM
+							  {
+								  Id = c.CategoryID,
+								  Name = c.CategoryName,
+								  ProductCount = c.Products.Count
+							  }).ToList();
+
+AsSplitQuery() 
+Joinli sorgularda Category ve Product ları ayrı ayrı çekicek.
+sonra bu 2 sorgunun sonucunu rem tarafında birleştiricek.
+2 den fazla tablodada yapar.
+hem AsSplitQuery() hem AsNoTracking() aynı anda kullanılır.
