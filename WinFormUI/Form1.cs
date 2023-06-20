@@ -59,12 +59,12 @@ namespace WinFormUI
 			//{
 			//	category.CategoryName = "Test";
 			//}
-			context.SaveChanges();
+			context.SaveChanges();  // AsNoTracking kullandýðým için Savechanges desemde veritabanýnda biþey olmayacak.
 
 
 			cbbCategories.DataSource = categories;
-			cbbCategories.DisplayMember = nameof(Category.CategoryName);
-			cbbCategories.ValueMember = nameof(Category.CategoryID);
+			cbbCategories.DisplayMember = nameof(Category.CategoryName); // ekranda gözükecek olan
+			cbbCategories.ValueMember = nameof(Category.CategoryID);    // combobox ýn ben seçim yaptýðýmda hangi datayý verecek. CategoryID
 		}
 
 		private void FillCategoryGrid()
@@ -120,10 +120,10 @@ namespace WinFormUI
 			var product = from p in context.Products.AsNoTracking().Include(p => p.Category)
 						  select new
 						  {
-							  Id=p.ProductID,
-							  ProductName=p.ProductName,
-							  CategoryName=p.Category.CategoryName
-							  
+							  Id = p.ProductID,
+							  ProductName = p.ProductName,
+							  CategoryName = p.Category.CategoryName
+
 						  };
 			grdProducts.DataSource = product.ToList();
 
@@ -133,7 +133,7 @@ namespace WinFormUI
 
 		private void btnProduct_Click(object sender, EventArgs e)
 		{
-			var categoryId = Convert.ToInt32(cbbCategories.SelectedValue);
+			var categoryId = Convert.ToInt32(cbbCategories.SelectedValue); // combobox ta seçtiðim deðerin id si. geriye object döner. Convert et.
 
 			Product product = new Product()
 			{
@@ -145,6 +145,18 @@ namespace WinFormUI
 			context.SaveChanges();         // bu iþlem veri tabanýnda da olsun diye
 
 			FillProductGrid();
+		}
+
+		private void silToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			int categoryId = Convert.ToInt32( grdCategories.CurrentRow.Cells[nameof(CategoryGridVM.Id)].Value);
+			//var category =context.Categories.Find(categoryId);
+			var category=context.Categories.FirstOrDefault(c=>c.CategoryID == categoryId);
+			context.Categories.Remove(category);
+			context.SaveChanges();
+
+			FillCategoryGrid();
+			
 		}
 	}
 }
