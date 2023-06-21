@@ -149,14 +149,34 @@ namespace WinFormUI
 
 		private void silToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			int categoryId = Convert.ToInt32( grdCategories.CurrentRow.Cells[nameof(CategoryGridVM.Id)].Value);
-			//var category =context.Categories.Find(categoryId);
-			var category=context.Categories.FirstOrDefault(c=>c.CategoryID == categoryId);
+			int categoryId = Convert.ToInt32(grdCategories.CurrentRow.Cells[nameof(CategoryGridVM.Id)].Value);
+			//var category =context.Categories.Find(categoryId);  // Find primary key alanýný ister
+			var category = context.Categories.FirstOrDefault(c => c.CategoryID == categoryId);
 			context.Categories.Remove(category);
 			context.SaveChanges();
 
 			FillCategoryGrid();
+
+		}
+
+		int updatedCategoryId;
+		private void DuzenleToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			updatedCategoryId = Convert.ToInt32(grdCategories.CurrentRow.Cells[nameof(CategoryGridVM.Id)].Value);
+
+			txtUpdateCategory.Text = grdCategories.CurrentRow.Cells[nameof(CategoryGridVM.Name)].Value.ToString();
+
 			
+		}
+
+		private void btnUpdateCategory_Click(object sender, EventArgs e)
+		{
+			var category=context.Categories.FirstOrDefault(c=>c.CategoryID == updatedCategoryId);
+			category.CategoryName = txtUpdateCategory.Text;
+			context.SaveChanges();
+
+			
+			FillCategoryGrid();
 		}
 	}
 }

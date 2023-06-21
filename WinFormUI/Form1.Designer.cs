@@ -72,25 +72,26 @@
 			// 
 			ctxgrdCategoryMenu.Items.AddRange(new ToolStripItem[] { silToolStripMenuItem, toolStripSeparator1, düzenleToolStripMenuItem });
 			ctxgrdCategoryMenu.Name = "ctxgrdCategoryMenu";
-			ctxgrdCategoryMenu.Size = new Size(181, 76);
+			ctxgrdCategoryMenu.Size = new Size(117, 54);
 			// 
 			// silToolStripMenuItem
 			// 
 			silToolStripMenuItem.Name = "silToolStripMenuItem";
-			silToolStripMenuItem.Size = new Size(180, 22);
+			silToolStripMenuItem.Size = new Size(116, 22);
 			silToolStripMenuItem.Text = "Sil";
 			silToolStripMenuItem.Click += silToolStripMenuItem_Click;
 			// 
 			// toolStripSeparator1
 			// 
 			toolStripSeparator1.Name = "toolStripSeparator1";
-			toolStripSeparator1.Size = new Size(177, 6);
+			toolStripSeparator1.Size = new Size(113, 6);
 			// 
 			// düzenleToolStripMenuItem
 			// 
 			düzenleToolStripMenuItem.Name = "düzenleToolStripMenuItem";
-			düzenleToolStripMenuItem.Size = new Size(180, 22);
+			düzenleToolStripMenuItem.Size = new Size(116, 22);
 			düzenleToolStripMenuItem.Text = "Düzenle";
+			düzenleToolStripMenuItem.Click += DuzenleToolStripMenuItem_Click;
 			// 
 			// label1
 			// 
@@ -193,6 +194,7 @@
 			btnUpdateCategory.TabIndex = 1;
 			btnUpdateCategory.Text = "Güncelle";
 			btnUpdateCategory.UseVisualStyleBackColor = true;
+			btnUpdateCategory.Click += btnUpdateCategory_Click;
 			// 
 			// txtUpdateCategory
 			// 
